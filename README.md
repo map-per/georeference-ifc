@@ -2,7 +2,7 @@
 
 [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/stijngoedertier/georeference-ifc/master?labpath=how-to-georeference-ifc-file.ipynb)
 
-Run this notebook on [mybinder.org](](https://mybinder.org/v2/gh/stijngoedertier/georeference-ifc/master?labpath=how-to-georeference-ifc-file.ipynb).
+Run this notebook on [mybinder.org](](https://mybinder.org/v2/gh/map-per/georeference-ifc/master?labpath=how-to-georeference-ifc-file.ipynb).
 
 # How to georeference a BIM model
 
