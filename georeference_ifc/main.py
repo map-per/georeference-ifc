@@ -88,6 +88,18 @@ def set_mapconversion_crs_ifc4(ifc_file: ifcopenshell.file,
                                scale: float) -> None:
     # we assume that the IFC file only has one IfcProject entity.
     source_crs = ifc_file.by_type('IfcProject')[0].RepresentationContexts[0]
+
+    # some IFC files already carry a (sometimes incomplete/blank) IfcMapConversion on this
+    # context, e.g. left behind by the authoring tool. get_mapconversion_crs() returns the
+    # *first* IfcMapConversion it finds on the context, so if we didn't remove pre-existing
+    # ones here, a stale/blank map conversion would silently shadow the one we are about to
+    # create below.
+    for existing_map_conversion in list(source_crs.HasCoordinateOperation):
+        existing_target_crs = existing_map_conversion.TargetCRS
+        ifc_file.remove(existing_map_conversion)
+        if existing_target_crs is not None:
+            ifc_file.remove(existing_target_crs)
+
     target_crs = ifc_file.createIfcProjectedCRS(
         Name=target_crs_epsg_code
     )
